@@ -1,28 +1,24 @@
 ﻿@model ChalangeYourself.Website.Models.UserProfileViewModels
-
 <div>
-    <h4>UserProfileViewModels</h4>
+    <h4>@Model.Username</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Username)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Points)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Points)
         </dd>
-
+        <dl>
+            @foreach (var interest in Model.Interests)
+            {
+            <dd>
+                @interest.Name
+            </dd>
+            }
+        </dl>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

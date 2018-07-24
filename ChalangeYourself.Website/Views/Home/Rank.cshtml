@@ -1,16 +1,32 @@
-﻿@{
-    ViewBag.Title = "Rank";
+﻿@model IEnumerable<ChalangeYourself.Website.Models.UserRankViewModel>
+
+<h4>Žebříček uživatelů</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Points)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Points)
+        </td>
+    </tr>
 }
 
-<div class="jumbotron">
-    <h1>Rank</h1>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <p>
-            Rank
-        </p>
-    </div>
-
-</div>
+</table>

@@ -49,5 +49,15 @@ namespace ChalangeYourself.Services.Repositories
                 .Chalanges
                 .FirstOrDefault(x => x.ChalangeId == id);
         }
+
+        public bool AddUserToChalange(Chalange chalange, ApplicationUser user)
+        {
+            var chalangeToEdit = _dbContext
+                .Chalanges
+                .FirstOrDefault(x => x.ChalangeId == chalange.ChalangeId);
+            chalangeToEdit.Users.Add(user);
+            _dbContext.SaveChanges();
+            return true;//TODO:
+        }
     }
 }

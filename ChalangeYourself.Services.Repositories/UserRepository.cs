@@ -20,6 +20,12 @@ namespace ChalangeYourself.Services.Repositories
             return _dbContext.Users;
         }
 
+        public IEnumerable<ApplicationUser> GetAllOrderedByPoints()
+        {
+            return GetAll()
+                .OrderBy(x=>x.Points);
+        }
+
         public ApplicationUser GetById(string userId)
         {
             return _dbContext

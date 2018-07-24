@@ -73,10 +73,17 @@
 <p>
     @if (User.Identity.IsAuthenticated)
     {
-        @Html.ActionLink("Připojit s k chalange", "Edit", new { /* id = Model.PrimaryKey */ })
+        if (!Model.RegisteredUsers.Contains(User.Identity.Name))
+        {
+            @Html.ActionLink("Připojit se k chalange", "Pripojit", new { chalangeId = Model.ChalangeId })
+        }
+        else
+        {
+            @Html.ActionLink("Již jsi v chalangy zapsán", null)
+        }
     }
     else
     {
-        @Html.ActionLink("Pro připojení je nutné se přihlásit", "Edit", new { /* id = Model.PrimaryKey */ })
+        @Html.ActionLink("Pro připojení je nutné se přihlásit", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
     }
 </p>

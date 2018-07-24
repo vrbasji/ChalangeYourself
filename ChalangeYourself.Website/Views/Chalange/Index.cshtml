@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ChalangeYourself.Website.Models.ChalangeOverViewViewModel>
+<p>
+    <h4>Řadit dle: </h4>
+    @Html.DropDownList("orderBy",ViewBag.OrderByOptions as List<SelectListItem>, new { @class = "listbox" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ChalangeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChalangeImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishAt)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChalangeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChalangeImageUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinishAt)
+        </td>
+        <td>
+            @Html.ActionLink("Přidej se k výzvě", "ChalangeDetail", "Chalange", new { chalangeId = item.ChalangeId }, null)
+        </td>
+    </tr>
+}
+
+</table>

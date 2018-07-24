@@ -55,11 +55,15 @@ namespace ChalangeYourself.Website.Controllers
         [HttpPost]
         public ActionResult AddProposalChalange(ProposalChalangeViewModel model)
         {
-            var user = _userRepository.GetById(User.Identity.GetUserId());
-            model.User = user;
-            var proposalChalange = ChalangeMappers.ProposalChalangeVMToPropChalange(model);
-            _chalangeRepository.AddProposalChalange(proposalChalange);
-            ViewBag.Message = "Vaš chalange byla odeslána ke schválení";
+            if (ModelState.IsValid)
+            {
+                var user = _userRepository.GetById(User.Identity.GetUserId());
+                model.User = user;
+                var proposalChalange = ChalangeMappers.ProposalChalangeVMToPropChalange(model);
+                _chalangeRepository.AddProposalChalange(proposalChalange);
+                ViewBag.Message = "Vaš chalange byla odeslána ke schválení";
+            }
+
             return View("Index");
         }
 
@@ -79,9 +83,13 @@ namespace ChalangeYourself.Website.Controllers
 
         public ActionResult Rank()
         {
-            ViewBag.Message = "Your ranks page.";
-
-            return View();
+            var users = _userRepository.GetAllOrderedByPoints();
+            var usersRankVM = new List<UserRankViewModel>();
+            foreach (var user in users)
+            {
+                usersRankVM.Add(UserMappers.UserToUsersRankMap(user));
+            }
+            return View("Rank",usersRankVM);
         }
     }
 }
