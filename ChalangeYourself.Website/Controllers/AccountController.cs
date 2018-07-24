@@ -89,6 +89,7 @@ namespace ChalangeYourself.Website.Controllers
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user != null)
             {
+                Session["UserImagePath"] = user.ImagePath;
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
@@ -97,7 +98,6 @@ namespace ChalangeYourself.Website.Controllers
                     return View("Error");
                 }
             }
-
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
@@ -213,7 +213,7 @@ namespace ChalangeYourself.Website.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             if (result.Succeeded)
             {
-                return RedirectToAction("EditProfile", "User");
+                return RedirectToAction("EditProfile", "User", new { activeUserId = userId });
             }
             else
             {

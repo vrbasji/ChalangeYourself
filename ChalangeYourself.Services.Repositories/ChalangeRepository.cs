@@ -43,5 +43,11 @@ namespace ChalangeYourself.Services.Repositories
             _dbContext.ProposalChalanges.Add(chalange);
             _dbContext.SaveChanges();
         }
+        public Chalange GetById(int id)
+        {
+            return _dbContext
+                .Chalanges
+                .FirstOrDefault(x => x.ChalangeId == id);
+        }
     }
 }

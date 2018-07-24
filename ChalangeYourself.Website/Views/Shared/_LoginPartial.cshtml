@@ -7,9 +7,9 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @if (ViewBag.UserImagePath != null)
+                @if (Session["UserImagePath"] != null)
                 {
-                    <img src="@Url.Content(ViewBag.UserImagePath)" alt="Image" id="userImage" />
+                    <img src="@Url.Content(Session["UserImagePath"].ToString())" alt="Image" id="userImage" />
                 }
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>

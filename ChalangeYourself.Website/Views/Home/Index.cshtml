@@ -17,8 +17,8 @@
                     {
                         <tr>
                             <th scope="row">@userPosition</th>
-                            <td>@user.UserId</td>
-                            <td>@user.Username</td>@*TODO:Možnost rozkliknout uživatele*@
+                            <td style="display: none;">@user.UserId</td>
+                            <td>@Html.ActionLink(user.Username, "UserProfile", "User", new { userId = user.UserId },null)</td>
                             <td>@user.Points</td>
                         </tr>
                         userPosition++;
@@ -48,7 +48,7 @@
                         {
                             <tr>
                                 <th scope="row">@chalangePosition</th>
-                                <td>@chalange.ProposalChalangeId</td>
+                                <td style="display: none;">@chalange.ProposalChalangeId</td>
                                 <td>@chalange.ChalangeName</td>@*TODO:Možnost rozkliknout chalange*@
                                 <td>@chalange.Points</td>
                             </tr>
@@ -64,29 +64,31 @@
 
         </div>
         <div class="col">
-            @{
-                for (int i = 0; i < Model.Chalanges.Count; i += 2)
-                {
-                    var chalange1 = Model.Chalanges[i];
-                    var chalange2 = Model.Chalanges[i + 1];
-                    <div class="row">
-                        <div class="col">
-                            <img src="@Url.Content(chalange1.ChalangeImageUrl)" alt="Image" id="@chalange1.ChalangeId" width="150" height="150"/>
-                            <div>
-                                @chalange1.FinishAt
-                            </div>
-                            <button>Přidej se k výzvě</button>
-                        </div>
-                        <div class="col">
-                            <img src="@Url.Content(chalange2.ChalangeImageUrl)" alt="Image" id="@chalange2.ChalangeId" width="150" height="150"/>
-                            <div>
-                                @chalange2.FinishAt
-                            </div>
-                            <button>Přidej se k výzvě</button>
-                        </div>
-                    </div>
+            <table>
+                @{
+                    for (int i = 0; i < Model.Chalanges.Count; i += 2)
+                    {
+                        var chalange1 = Model.Chalanges[i];
+                        var chalange2 = Model.Chalanges[i + 1];
+                        <tr>
+                            <td>
+                                <img src="@Url.Content(chalange1.ChalangeImageUrl)" alt="Image" id="@chalange1.ChalangeId" width="150" height="150" />
+                                <div>
+                                    @chalange1.FinishAt
+                                </div>
+                                @Html.ActionLink("Přidej se k výzvě", "ChalangeDetail", "Chalange", new { chalangeId = chalange1.ChalangeId }, null)
+                            </td>
+                            <td>
+                                <img src="@Url.Content(chalange2.ChalangeImageUrl)" alt="Image" id="@chalange2.ChalangeId" width="150" height="150" />
+                                <div>
+                                    @chalange2.FinishAt
+                                </div>
+                                @Html.ActionLink("Přidej se k výzvě", "ChalangeDetail", "Chalange", new { chalangeId = chalange2.ChalangeId }, null)
+                            </td>
+                        </tr>
+                    }
                 }
-            }
+            </table>
         </div>
     </div>
 </div>

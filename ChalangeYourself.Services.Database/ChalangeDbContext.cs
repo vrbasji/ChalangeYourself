@@ -20,14 +20,19 @@ namespace ChalangeYourself.Services.Database
         public DbSet<UserChalangeHistory> UserChalangeHistories { get; set; }
         //public DbSet<ApplicationUser> Users { get; set; }
 
-        public ChalangeDbContext()
-            : base("ChalangeYourselfConStr", throwIfV1Schema: false)
-        {
-        }
+        //public ChalangeDbContext()
+        //    : base("ChalangeYourselfConStr", throwIfV1Schema: false)
+        //{
+        //}
         //public ChalangeDbContext()
         //    : base("DefaultConnection", throwIfV1Schema: false)
         //{
         //}
+        public ChalangeDbContext()
+            : base("LocalDbConStr", throwIfV1Schema: false)
+        {
+
+        }
 
         public static ChalangeDbContext Create()
         {

@@ -38,5 +38,23 @@ namespace ChalangeYourself.Website.Mappers
                 User = model.User
             };
         }
+        public static DetailChalangeViewModel ChalangeToDetailChalangeVM(Chalange chalange)
+        {
+            return new DetailChalangeViewModel()
+            {
+                ChalangeId = chalange.ChalangeId,
+                Description = chalange.Description,
+                Difficulty = chalange.Difficulty,
+                EndDate = chalange.EndDate,
+                InterestsTags = chalange.Interests.Select(x=> x.Name),
+                MaxAge = chalange.MaxAge,
+                MinAge = chalange.MinAge,
+                Name = chalange.Name,
+                Prices = chalange.Prices.Select(x=>x.Name),
+                RegisteredUsers = chalange.Users.Select(x=>x.UserName),
+                StartDate = chalange.StartDate,
+                ThumbnailUrl = chalange.ThumbnailUrl
+            };
+        }
     }
 }

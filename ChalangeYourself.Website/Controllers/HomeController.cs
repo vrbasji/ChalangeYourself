@@ -59,6 +59,7 @@ namespace ChalangeYourself.Website.Controllers
             model.User = user;
             var proposalChalange = ChalangeMappers.ProposalChalangeVMToPropChalange(model);
             _chalangeRepository.AddProposalChalange(proposalChalange);
+            ViewBag.Message = "Vaš chalange byla odeslána ke schválení";
             return View("Index");
         }
 

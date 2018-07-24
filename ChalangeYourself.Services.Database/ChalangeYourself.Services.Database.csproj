@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201807171843003_init_final.Designer.cs">
       <DependentUpon>201807171843003_init_final.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807240913415_proposal_chalange_active.cs" />
+    <Compile Include="Migrations\201807240913415_proposal_chalange_active.Designer.cs">
+      <DependentUpon>201807240913415_proposal_chalange_active.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807171843003_init_final.resx">
       <DependentUpon>201807171843003_init_final.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807240913415_proposal_chalange_active.resx">
+      <DependentUpon>201807240913415_proposal_chalange_active.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

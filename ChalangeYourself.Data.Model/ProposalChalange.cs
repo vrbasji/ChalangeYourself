@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChalangeYourself.Data.Model
 {
@@ -21,6 +17,9 @@ namespace ChalangeYourself.Data.Model
         [Required]
         [DefaultValue(0)]
         public int Points { get; set; }
+        [Required]
+        [DefaultValue(false)]
+        public bool Activated { get; set; }
 
         public virtual ICollection<ApplicationUser> UserVotes { get; set; }
     }

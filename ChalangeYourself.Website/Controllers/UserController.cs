@@ -30,10 +30,11 @@ namespace ChalangeYourself.Website.Controllers
             _chalangeRepository = chalangeRepository;
         }
 
-        public ActionResult UserProfile()
+        public ActionResult UserProfile(string userId)
         {
-            var user = _userRepository.GetById(User.Identity.GetUserId());
-            var userChalange = _chalangeRepository.GetChalangeByUserId(User.Identity.GetUserId());
+            var user = _userRepository.GetById(userId);
+            if (user == null) return View("Error");
+            var userChalange = _chalangeRepository.GetChalangeByUserId(user.Id);
             var userProfile = new UserProfileViewModels()
             {
                 Username = user.UserName,
@@ -44,10 +45,13 @@ namespace ChalangeYourself.Website.Controllers
             return View("UserProfile", userProfile);
         }
         // GET: User
-        public ActionResult EditProfile()
+        public ActionResult EditProfile(string activeUserId)
         {
-            //TODO: pokoumat jestli to vrátí uživatele, kdyžtak přesměrovat na error
-            var user = _userRepository.GetById(User.Identity.GetUserId());
+            if (User.Identity.IsAuthenticated)
+            {
+                activeUserId = User.Identity.GetUserId();
+            }
+            var user = _userRepository.GetById(activeUserId);
             var userModel = new EditProfileViewModels()
             {
                 DateOfBirth = user.DateOfBirth,
@@ -107,7 +111,7 @@ namespace ChalangeYourself.Website.Controllers
                 ViewBag.Message = "Uživatelská data byla upravena";
             }
 
-            return View("EditProfile", editProfile);
+            return View("UserProfile");
         }
         private List<SelectListItem> GetInterestsAsItems(ApplicationUser user)
         {
