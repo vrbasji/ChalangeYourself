@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using ChalangeYourself.Data.Model;
+using ChalangeYourself.Services.Database;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using ChalangeYourself.Website.Models;
 
 namespace ChalangeYourself.Website
 {
@@ -18,8 +22,30 @@ namespace ChalangeYourself.Website
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            return ConfigSendGridasync(message);
+        }
+
+        private Task ConfigSendGridasync(IdentityMessage message)
+        {
+            var myMessage = new MailMessage("vrbasji@gmail.com", message.Destination);
+            myMessage.Subject = message.Subject;
+            myMessage.Body = message.Body;
+            myMessage.IsBodyHtml = true;
+
+            SmtpClient client = new SmtpClient();
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.EnableSsl = true;
+            var credentials = new NetworkCredential(
+                 ConfigurationManager.AppSettings["mailAccount"],
+                 ConfigurationManager.AppSettings["mailPassword"]
+                 );
+            client.Credentials = credentials;
+            client.Host = "smtp.gmail.com";
+            myMessage.Subject = "this is a test email.";
+
+            return client.SendMailAsync(myMessage);
         }
     }
 
@@ -42,7 +68,7 @@ namespace ChalangeYourself.Website
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ChalangeDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {

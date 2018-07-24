@@ -5,6 +5,21 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChalangeYourself.Website", "ChalangeYourself.Website\ChalangeYourself.Website.csproj", "{B2325A24-99DE-42FC-9ED5-A9C63C2D46CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChalangeYourself.Data.Model", "ChalangeYourself.Data.Model\ChalangeYourself.Data.Model.csproj", "{58320908-2A84-4A42-9970-A9D90C973539}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChalangeYourself.Services.Database", "ChalangeYourself.Services.Database\ChalangeYourself.Services.Database.csproj", "{77185304-602C-4D9F-8E34-A38CC076C533}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChalangeYourself.Services.Repositories", "ChalangeYourself.Services.Repositories\ChalangeYourself.Services.Repositories.csproj", "{B0CB60F8-091B-4729-8273-6B03A04C7AA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data queries", "Data queries", "{1A90C3A1-588F-4649-AC92-9D447BE24BB9}"
+	ProjectSection(SolutionItems) = preProject
+		data.sql = data.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChalangeYourself.Services", "ChalangeYourself.Services\ChalangeYourself.Services.csproj", "{3678E691-C81C-4E52-8B89-389ADC2D6B3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChalangeYourself.Services.Database.InitData", "ChalangeYourself.Services.Database.InitData\ChalangeYourself.Services.Database.InitData.csproj", "{00CBC170-B52D-46A7-B1D5-36D570216468}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +30,32 @@ Global
 		{B2325A24-99DE-42FC-9ED5-A9C63C2D46CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2325A24-99DE-42FC-9ED5-A9C63C2D46CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2325A24-99DE-42FC-9ED5-A9C63C2D46CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58320908-2A84-4A42-9970-A9D90C973539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58320908-2A84-4A42-9970-A9D90C973539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58320908-2A84-4A42-9970-A9D90C973539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58320908-2A84-4A42-9970-A9D90C973539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77185304-602C-4D9F-8E34-A38CC076C533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77185304-602C-4D9F-8E34-A38CC076C533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77185304-602C-4D9F-8E34-A38CC076C533}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77185304-602C-4D9F-8E34-A38CC076C533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0CB60F8-091B-4729-8273-6B03A04C7AA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0CB60F8-091B-4729-8273-6B03A04C7AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0CB60F8-091B-4729-8273-6B03A04C7AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0CB60F8-091B-4729-8273-6B03A04C7AA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3678E691-C81C-4E52-8B89-389ADC2D6B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3678E691-C81C-4E52-8B89-389ADC2D6B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3678E691-C81C-4E52-8B89-389ADC2D6B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3678E691-C81C-4E52-8B89-389ADC2D6B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00CBC170-B52D-46A7-B1D5-36D570216468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00CBC170-B52D-46A7-B1D5-36D570216468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00CBC170-B52D-46A7-B1D5-36D570216468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00CBC170-B52D-46A7-B1D5-36D570216468}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E37665DC-3767-43EB-8CC6-544BABA7825B}
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.2.1.505.0\lib\NET35
 	EndGlobalSection
 EndGlobal

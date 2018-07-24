@@ -1,11 +1,12 @@
 ﻿using System;
+using ChalangeYourself.Data.Model;
+using ChalangeYourself.Services.Database;
+using ChalangeYourself.Services.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using ChalangeYourself.Website.Models;
 
 namespace ChalangeYourself.Website
 {
@@ -15,7 +16,7 @@ namespace ChalangeYourself.Website
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(ChalangeDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
