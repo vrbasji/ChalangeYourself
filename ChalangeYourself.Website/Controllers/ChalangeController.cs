@@ -45,7 +45,7 @@ namespace ChalangeYourself.Website.Controllers
             var chalange = _chalangeRepository.GetById(chalangeId);
             var user = _userRepository.GetById(User.Identity.GetUserId());
             var result = _chalangeRepository.AddUserToChalange(chalange, user); //TODO: Pracovat s výsledkem
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
         private IEnumerable<SelectListItem> GetOrderBySelections()
         {

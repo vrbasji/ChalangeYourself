@@ -28,11 +28,8 @@ namespace ChalangeYourself.Website.Controllers
             var user = _userRepository.GetById(User.Identity.GetUserId());
             var rankedUsers = _userRepository.GetRankedUser();
             var chalanges = _chalangeRepository.GetAllOrderedByDay();
-            var propousalChalanges = _chalangeRepository.GetPropousalChalanges();
-            if (user != null)
-            {
-                ViewBag.UserImagePath = user.ImagePath;
-            }
+            var propousalChalanges = _chalangeRepository.GetActivePropousalChalanges();
+
             var homePageVM = new HomePageViewModel()
             {
                 Chalanges = new List<ChalangeOverViewViewModel>(

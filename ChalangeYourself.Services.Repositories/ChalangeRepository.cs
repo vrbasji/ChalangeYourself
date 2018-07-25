@@ -33,13 +33,16 @@ namespace ChalangeYourself.Services.Repositories
                 .Where(x=>x.Active)
                 .OrderBy(x => x.EndDate);
         }
-        public IEnumerable<ProposalChalange> GetPropousalChalanges()
+        public IEnumerable<ProposalChalange> GetActivePropousalChalanges()
         {
-            return _dbContext.ProposalChalanges;
+            return _dbContext
+                .ProposalChalanges
+                .Where(x=>x.Activated);
         }
 
         public void AddProposalChalange(ProposalChalange chalange)
         {
+            chalange.User = _dbContext.Users.FirstOrDefault(x => x.Id == chalange.User.Id);
             _dbContext.ProposalChalanges.Add(chalange);
             _dbContext.SaveChanges();
         }

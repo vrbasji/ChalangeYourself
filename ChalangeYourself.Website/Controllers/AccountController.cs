@@ -89,9 +89,9 @@ namespace ChalangeYourself.Website.Controllers
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user != null)
             {
-                Session["UserImagePath"] = user.ImagePath;
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
+                    Session["UserImagePath"] = user.ImagePath;
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
 
                     ViewBag.errorMessage = "You must have a confirmed email to log on.";
@@ -104,6 +104,7 @@ namespace ChalangeYourself.Website.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    Session["UserImagePath"] = user.ImagePath;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -428,6 +429,7 @@ namespace ChalangeYourself.Website.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session["UserImagePath"] = null;
             return RedirectToAction("Index", "Home");
         }
 
