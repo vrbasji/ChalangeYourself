@@ -26,7 +26,8 @@ namespace ChalangeYourself.Website.Mappers
                 UserId = propChalange.User.Id,
                 Username = propChalange.User.UserName,
                 Points = propChalange.Points,
-                ProposalChalangeId = propChalange.ProposalChalangeId
+                ProposalChalangeId = propChalange.ProposalChalangeId,
+                UsersVote = propChalange.UserVotes.Select(x=>x.Id).ToList()
             };
         }
         public static ProposalChalange ProposalChalangeVMToPropChalange(ProposalChalangeViewModel model)

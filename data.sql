@@ -1,4 +1,7 @@
-﻿insert into interests values ('Sport');
+﻿insert into AspNetRoles(id,name) values (1,'user');
+insert into AspNetRoles(id,name) values (2,'admin');
+
+insert into interests values ('Sport');
 insert into interests values ('Adrenalin');
 insert into interests values ('Jídlo');
 insert into interests values ('Párty');

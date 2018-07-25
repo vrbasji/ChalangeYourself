@@ -1,5 +1,5 @@
 ﻿@model ChalangeYourself.Website.Models.HomePageViewModel
-
+@using Microsoft.AspNet.Identity
 <div class="container">
     <div class="row">
         <div class="col-sm">
@@ -9,6 +9,7 @@
                     <tr>
                         <th scope="col">Místo</th>
                         <th scope="col">Jméno</th>
+                        <th scope="col">Počet bodů</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,7 @@
                     <tr>
                         <th scope="col">Místo</th>
                         <th scope="col">Jméno</th>
+                        <th scope="col">Počet bodů</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,12 +48,20 @@
                         int chalangePosition = 1;
                         foreach (var chalange in Model.ProposalChalangesRanks)
                         {
-                            <tr>
-                                <th scope="row">@chalangePosition</th>
-                                <td style="display: none;">@chalange.ProposalChalangeId</td>
-                                <td>@chalange.ChalangeName</td>@*TODO:Možnost rozkliknout chalange*@
-                                <td>@chalange.Points</td>
-                            </tr>
+                        <tr>
+                            <th scope="row">@chalangePosition</th>
+                            <td style="display: none;">@chalange.ProposalChalangeId</td>
+                            <td>@chalange.ChalangeName</td>@*TODO:Možnost rozkliknout chalange*@
+                            <td>@chalange.Points</td>
+                            @if (!chalange.UsersVote.Contains(User.Identity.GetUserId()))
+                            {
+                                <td><button>Hlasuj</button></td>
+                            }
+                            else
+                            {
+                                <td>Můžeš přidat pouze jeden hlas</td>
+                            }
+                        </tr>
                             chalangePosition++;
                         }
                     }

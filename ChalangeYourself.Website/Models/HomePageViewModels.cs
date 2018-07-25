@@ -1,8 +1,5 @@
-﻿using ChalangeYourself.Data.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ChalangeYourself.Website.Models
 {
@@ -34,5 +31,7 @@ namespace ChalangeYourself.Website.Models
         public string Username { get; set; }
         public string ChalangeName { get; set; }
         public int Points { get; set; }
+
+        public List<string> UsersVote { get; set; }
     }
 }

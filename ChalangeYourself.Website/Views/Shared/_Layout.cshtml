@@ -25,6 +25,12 @@
                     <li>@Html.ActionLink("Žebříček", "Rank", "Home")</li>
                     <li>@Html.ActionLink("O nás", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Správa uživatelů", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Správa chalangý", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Správa nových chanalgý", "Contact", "Home")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

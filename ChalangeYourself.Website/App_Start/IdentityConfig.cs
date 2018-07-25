@@ -27,7 +27,7 @@ namespace ChalangeYourself.Website
 
         private Task ConfigSendGridasync(IdentityMessage message)
         {
-            var myMessage = new MailMessage("vrbasji@gmail.com", message.Destination);
+            var myMessage = new MailMessage(ConfigurationManager.AppSettings["mailAccount"], message.Destination);
             myMessage.Subject = message.Subject;
             myMessage.Body = message.Body;
             myMessage.IsBodyHtml = true;

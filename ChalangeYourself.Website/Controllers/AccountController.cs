@@ -185,7 +185,7 @@ namespace ChalangeYourself.Website.Controllers
 
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
-
+                    await UserManager.AddToRoleAsync(user.Id, "user");
                     // Uncomment to debug locally 
                     // TempData["ViewBagLink"] = callbackUrl;
 
