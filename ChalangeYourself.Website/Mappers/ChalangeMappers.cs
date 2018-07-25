@@ -51,7 +51,12 @@ namespace ChalangeYourself.Website.Mappers
                 MinAge = chalange.MinAge,
                 Name = chalange.Name,
                 Prices = chalange.Prices.Select(x=>x.Name),
-                RegisteredUsers = chalange.Users.Select(x=>x.UserName),
+                RegisteredUsers = chalange.Users.Select(x=> new DetailChalangeUserViewModel() {
+                    Points = x.Points,
+                    UserId = x.Id,
+                    Username = x.UserName
+                })
+                .OrderBy(x=>x.Points),
                 StartDate = chalange.StartDate,
                 ThumbnailUrl = chalange.ThumbnailUrl
             };

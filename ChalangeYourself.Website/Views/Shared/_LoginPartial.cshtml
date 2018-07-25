@@ -13,7 +13,11 @@
                 }
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
-            <li>@Html.ActionLink("Profil", "MyProfile", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            <li>
+                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                    Profil
+                </button>
+                @*@Html.ActionLink("Profil", "MyProfile", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
             <li>@Html.ActionLink("Upravit profil", "EditProfile", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>

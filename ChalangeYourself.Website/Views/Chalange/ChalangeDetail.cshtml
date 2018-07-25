@@ -1,7 +1,21 @@
 ﻿@model ChalangeYourself.Website.Models.DetailChalangeViewModel
-
+@using Microsoft.AspNet.Identity
 <div>
-    <h4>DetailChalangeViewModel</h4>
+    <table>
+        @{ int rank = 1;
+            foreach (var user in Model.RegisteredUsers)
+            {
+                <tr>
+                    <td>@rank</td>
+                    <td>@user.UserId</td>
+                    <td>@user.Username</td>
+                    <td>@user.Points</td>
+                </tr>
+                rank++;
+            }
+        }
+    </table>
+    <h4>@Model.Name</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -73,9 +87,9 @@
 <p>
     @if (User.Identity.IsAuthenticated)
     {
-        if (!Model.RegisteredUsers.Contains(User.Identity.Name))
+        if (Model.RegisteredUsers.FirstOrDefault(x => x.UserId == User.Identity.GetUserId()) == null)
         {
-            @Html.ActionLink("Připojit se k chalange", "Pripojit", new { chalangeId = Model.ChalangeId })
+            @Html.ActionLink("Jdu do toho!", "Pripojit", new { chalangeId = Model.ChalangeId })
         }
         else
         {

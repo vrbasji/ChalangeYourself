@@ -18,9 +18,15 @@ namespace ChalangeYourself.Website.Models
         public int MinAge { get; set; }
         public int MaxAge { get; set; }
 
-        public IEnumerable<string> RegisteredUsers { get; set; }
+        public IEnumerable<DetailChalangeUserViewModel> RegisteredUsers { get; set; }
         public IEnumerable<string> InterestsTags { get; set; }
         public IEnumerable<string> Prices { get; set; }
 
+    }
+    public class DetailChalangeUserViewModel
+    {
+        public string UserId { get; set; }
+        public string Username { get; set; }
+        public int Points { get; set; }
     }
 }

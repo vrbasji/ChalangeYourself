@@ -4,7 +4,9 @@ using ChalangeYourself.Services.Repositories;
 using ChalangeYourself.Website.Controllers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using System.Data.Entity;
+using System.Web;
 using System.Web.Mvc;
 using Unity;
 using Unity.Injection;
@@ -23,13 +25,14 @@ namespace ChalangeYourself.Website
             // it is NOT necessary to register your controllers
 
             // e.g. container.RegisterType<ITestService, TestService>();
+            //container.RegisterSingleton<ChalangeDbContext>();
+            //container.RegisterInstance<ApplicationUserManager>(ApplicationUserManager.Create);
+
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
+
             RegisterRepositories(container);
             RegisterServicies(container);
-
-            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new InjectionConstructor());
-            //container.RegisterType<DbContext, ChalangeDbContext>(new HierarchicalLifetimeManager());
-            container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
-            container.RegisterType<AccountController>(new InjectionConstructor());
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
