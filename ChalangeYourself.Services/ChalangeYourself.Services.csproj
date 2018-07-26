@@ -44,11 +44,16 @@
   <ItemGroup>
     <Compile Include="ImageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProposalChalangeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChalangeYourself.Data.Model\ChalangeYourself.Data.Model.csproj">
       <Project>{58320908-2a84-4a42-9970-a9d90c973539}</Project>
       <Name>ChalangeYourself.Data.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChalangeYourself.Services.Repositories\ChalangeYourself.Services.Repositories.csproj">
+      <Project>{b0cb60f8-091b-4729-8273-6b03a04c7aa7}</Project>
+      <Name>ChalangeYourself.Services.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

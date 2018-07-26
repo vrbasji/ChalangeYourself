@@ -9,9 +9,9 @@
             <li>
                 @if (Session["UserImagePath"] != null)
                 {
-                    <img src="@Url.Content(Session["UserImagePath"].ToString())" alt="Image" id="userImage" />
+                    <img src="@Url.Content(Session["UserImagePath"].ToString())" alt="Image" id="userImage"/>
                 }
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="floatLeft" })
             </li>
             <li>
                 @Html.ActionLink("Profil", "MyProfile", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>

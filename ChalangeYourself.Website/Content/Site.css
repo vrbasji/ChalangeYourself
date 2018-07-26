@@ -61,4 +61,9 @@ textarea {
 #userImage {
     height: 100px;
     width: 100px;
+    float: left;
+}
+
+.floatLeft {
+    float: left;
 }

@@ -30,6 +30,17 @@ namespace ChalangeYourself.Website.Mappers
                 UsersVote = propChalange.UserVotes.Select(x=>x.Id).ToList()
             };
         }
+        public static ProposalChalangeAdminViewModel ProposalChalangeToProposalAdminMap(ProposalChalange propChalange)
+        {
+            return new ProposalChalangeAdminViewModel()
+            {
+                Activated = propChalange.Activated,
+                Description = propChalange.Description,
+                ProposalChalangeId = propChalange.ProposalChalangeId,
+                Name = propChalange.Name,
+                UserId = propChalange.User.Id
+            };
+        }
         public static ProposalChalange ProposalChalangeVMToPropChalange(ProposalChalangeViewModel model)
         {
             return new ProposalChalange()
@@ -60,6 +71,23 @@ namespace ChalangeYourself.Website.Mappers
                 .OrderBy(x=>x.Points),
                 StartDate = chalange.StartDate,
                 ThumbnailUrl = chalange.ThumbnailUrl
+            };
+        }
+        public static Chalange ProposalChalangeVMToChalange(ProposalChalangeAdminViewModel prChalange)
+        {
+            return new Chalange()
+            {
+                Active = true,
+                Description = prChalange.Description,
+                Difficulty = prChalange.Difficulty,
+                EndDate = prChalange.EndDate,
+                Interests = prChalange.Interests.ToList(),
+                MaxAge = prChalange.MaxAge,
+                MinAge = prChalange.MinAge,
+                Name = prChalange.Name,
+                PublishDate = DateTime.Now,
+                StartDate = prChalange.StartDate,
+                ThumbnailUrl = prChalange.ThumbnailUrl
             };
         }
     }

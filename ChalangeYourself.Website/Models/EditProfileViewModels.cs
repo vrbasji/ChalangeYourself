@@ -15,9 +15,9 @@ namespace ChalangeYourself.Website.Models
         [Display(Name = "Příjmení")]
         public string LastName { get; set; }
         [Display(Name = "Datum narození")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfBirth { get; set; }
-        [Display(Name = "Email")]
-        public string Email { get; set; }
         [Display(Name = "Telefoní číslo")]
         public string PhoneNumber { get; set; }
         [Display(Name = "Uživatelské jméno")]

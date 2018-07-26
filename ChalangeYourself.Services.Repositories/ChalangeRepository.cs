@@ -39,6 +39,12 @@ namespace ChalangeYourself.Services.Repositories
                 .ProposalChalanges
                 .Where(x=>x.Activated);
         }
+        public IEnumerable<ProposalChalange> GetAllPropousalChalanges()
+        {
+            return _dbContext
+                .ProposalChalanges
+                .OrderBy(x=>!x.Activated);
+        }
 
         public void AddProposalChalange(ProposalChalange chalange)
         {
@@ -61,6 +67,41 @@ namespace ChalangeYourself.Services.Repositories
             chalangeToEdit.Users.Add(user);
             _dbContext.SaveChanges();
             return true;//TODO:
+        }
+        public void AproveProposalChalange(int chalangeId)
+        {
+            var proposalChalange = _dbContext.ProposalChalanges.FirstOrDefault(x => x.ProposalChalangeId == chalangeId);
+            if (proposalChalange == null)
+            {
+                throw new ArgumentNullException("proposalChalange");
+            }
+            proposalChalange.Activated = true;
+            _dbContext.SaveChanges();
+        }
+        public bool CreateChalangeFromProposalChalange(int proposalChalangeId, Chalange chalange)
+        {
+            var propChalange = _dbContext.ProposalChalanges.FirstOrDefault(x => x.ProposalChalangeId == proposalChalangeId);
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    _dbContext.ProposalChalanges.Remove(propChalange);
+                    _dbContext.Chalanges.Add(chalange);
+                    _dbContext.SaveChanges();
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    return false;
+                }
+                transaction.Commit();
+            }
+            return true;
+        }
+        public void AddChalange(Chalange chalange)
+        {
+            _dbContext.Chalanges.Add(chalange);
+            _dbContext.SaveChanges();
         }
     }
 }

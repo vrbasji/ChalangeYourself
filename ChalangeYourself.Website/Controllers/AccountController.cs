@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ChalangeYourself.Website.Models;
 using ChalangeYourself.Data.Model;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ChalangeYourself.Website.Controllers
 {
@@ -91,7 +92,6 @@ namespace ChalangeYourself.Website.Controllers
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
-                    Session["UserImagePath"] = user.ImagePath;
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
 
                     ViewBag.errorMessage = "You must have a confirmed email to log on.";
@@ -430,6 +430,7 @@ namespace ChalangeYourself.Website.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session["UserImagePath"] = null;
+            Session["IsUserInRole"] = null;
             return RedirectToAction("Index", "Home");
         }
 

@@ -45,17 +45,16 @@ namespace ChalangeYourself.Website.Controllers
             return View("UserProfile", userProfile);
         }
         // GET: User
-        public ActionResult EditProfile(string activeUserId)
+        public ActionResult EditProfile()
         {
-            if (User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
             {
-                activeUserId = User.Identity.GetUserId();
+                return View("Error");
             }
-            var user = _userRepository.GetById(activeUserId);
+            var user = _userRepository.GetById(User.Identity.GetUserId());
             var userModel = new EditProfileViewModels()
             {
                 DateOfBirth = user.DateOfBirth,
-                Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 PhoneNumber = user.PhoneNumber,
@@ -80,12 +79,17 @@ namespace ChalangeYourself.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _userRepository.GetByEmail(editProfile.Email);
-                user.ImagePath = await _imageService.SaveImage(upload);
+                var user = _userRepository.GetById(User.Identity.GetUserId());
+                if (upload != null)
+                {
+                    user.ImagePath = await _imageService.SaveImage(upload);
+                }
+
                 user.DateOfBirth = editProfile.DateOfBirth;
                 user.FirstName = editProfile.FirstName;
                 user.LastName = editProfile.LastName;
                 user.PhoneNumber = editProfile.PhoneNumber;
+                user.UserName = editProfile.UserName;
                 if (user.ShipingAddress == null)
                 {
                     var shippingAddress = new ShipingAddress();
@@ -111,7 +115,7 @@ namespace ChalangeYourself.Website.Controllers
                 ViewBag.Message = "Uživatelská data byla upravena";
             }
 
-            return View("UserProfile");
+            return RedirectToAction("UserProfile", new { userId = User.Identity.GetUserId() });
         }
         private List<SelectListItem> GetInterestsAsItems(ApplicationUser user)
         {

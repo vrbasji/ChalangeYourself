@@ -1,5 +1,6 @@
 ﻿using ChalangeYourself.Data.Model;
 using ChalangeYourself.Services.Database;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
