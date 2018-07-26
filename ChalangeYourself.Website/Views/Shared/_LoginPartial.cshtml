@@ -14,7 +14,7 @@
                 @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="floatLeft" })
             </li>
             <li>
-                @Html.ActionLink("Profil", "MyProfile", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                @Html.ActionLink("Profil", "UserProfile", "User", new { userId = User.Identity.GetUserId() },null)</li>
             <li>@Html.ActionLink("Upravit profil", "EditProfile", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>

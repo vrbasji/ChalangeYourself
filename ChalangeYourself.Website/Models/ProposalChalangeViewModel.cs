@@ -27,6 +27,7 @@ namespace ChalangeYourself.Website.Models
         public string UserId { get; set; }
         [Required]
         [Display(Name = "Počet bodů")]
+        [Range(0, int.MaxValue, ErrorMessage = "Počet bodů musí být v rozsahu 0 až maximální hodnota int")]
         public int Points { get; set; }
         public bool Activated { get; set; }
 

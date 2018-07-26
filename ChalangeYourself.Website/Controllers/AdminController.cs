@@ -31,7 +31,12 @@ namespace ChalangeYourself.Website.Controllers
         public ActionResult ChalangeManagement()
         {
             var chalanges = _chalangeRepository.GetAllOrderedByDay();
-            return View();
+            var chalangesVM = new List<DetailChalangeViewModel>();
+            foreach (var chalange in chalanges)
+            {
+                chalangesVM.Add(ChalangeMappers.ChalangeToDetailChalangeVM(chalange));
+            }
+            return View(chalangesVM);
         }
         public ActionResult ProposalChalangeManagement()
         {
